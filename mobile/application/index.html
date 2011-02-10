@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <title>MeDo</title>
+  
+  <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    
+  <!--<script type="text/javascript" src="/js/phonegap.js"></script>-->
+  <script type="text/javascript" src="/js/medo.js"></script>   
+  
+  <script type="text/javascript" charset="utf-8">
+    var medo = null;
+  </script>
+
+</head>
+<body id="stage" class="theme" onload="init()">
+  
+  <script type="text/javascript" charset="utf-8">
+    document.addEventListener("deviceready", function() {
+      //medo = new MeDo();
+    }, true);
+
+
+    function init() {
+      medo = new MeDo();
+    }
+
+  </script>
+  
+  
+  <div class="homepage">
+    <div class="main">
+      
+      <h2>MeDo - 16 items</h2>
+      <ul>
+        <li class="first"><a href="#">Buy cat food</a></li>
+        <li><a href="#">Build some more useful phone apps</a></li>
+        <li><a href="#">Sleep</a></li>
+        <li><a href="#">Buy cat food</a></li>
+        <li><a href="#">Build some more useful phone apps</a></li>
+        <li><a href="#">Sleep</a></li>
+        <li><a href="#">Buy cat food</a></li>
+        <li><a href="#">Build some more useful phone apps</a></li>
+        <li><a href="#">Sleep</a></li>
+        <li><a href="#">Buy cat food</a></li>
+        <li><a href="#">Build some more useful phone apps</a></li>
+        <li><a href="#">Sleep</a></li>
+        <li><a href="#">Buy cat food</a></li>
+        <li><a href="#">Build some more useful phone apps</a></li>
+        <li><a href="#">Sleep</a></li>
+        <li><a href="#">Buy cat food</a></li>
+        <li><a href="#">Build some more useful phone apps</a></li>
+        <li class="last"><a href="#">Sleep</a></li>
+      </ul>
+    </div>
+    
+    <div class="tray-menu">
+      <div class="item">
+        <div class="inner">
+          <a href="#" class="" onclick="medo.addNew();">
+            Add
+          </a>
+        </div>
+      </div>
+      <div class="item">
+        <a href="#" class="" onclick="medo.exit();">
+          Exit
+        </a>
+      </div>
+    </div>
+  </div> <!-- homepage -->
+
+</body>
+</html>
+
