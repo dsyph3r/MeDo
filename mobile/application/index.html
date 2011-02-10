@@ -6,12 +6,25 @@
   <title>MeDo</title>
   
   <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="no title" charset="utf-8">
-    
-  <!--<script type="text/javascript" src="/js/phonegap.js"></script>-->
-  <script type="text/javascript" src="/js/medo.js"></script>   
+  
+  <script type="text/javascript" src="js/jquery.js"></script>    
+  <script type="text/javascript" src="js/phonegap.js"></script>
+  <script type="text/javascript" src="js/medo.js"></script>   
   
   <script type="text/javascript" charset="utf-8">
     var medo = null;
+    
+    var testData = [
+      "Buy cat food",
+      "Build some more useful phone apps",
+      "Sleep",
+      "Buy cat food",
+      "Build some more useful phone apps",
+      "Sleep",
+      "Buy cat food",
+      "Build some more useful phone apps",
+      "Sleep"
+    ];
   </script>
 
 </head>
@@ -19,40 +32,25 @@
   
   <script type="text/javascript" charset="utf-8">
     document.addEventListener("deviceready", function() {
-      //medo = new MeDo();
+      medo = new MeDo();
+      medo.loadRaw(testData);
     }, true);
 
 
     function init() {
       medo = new MeDo();
+      medo.loadRaw(testData);
     }
 
   </script>
   
   
   <div class="homepage">
-    <div class="main">
+    <div class="main" id="todo">
       
       <h2>MeDo - 16 items</h2>
       <ul>
-        <li class="first"><a href="#">Buy cat food</a></li>
-        <li><a href="#">Build some more useful phone apps</a></li>
-        <li><a href="#">Sleep</a></li>
-        <li><a href="#">Buy cat food</a></li>
-        <li><a href="#">Build some more useful phone apps</a></li>
-        <li><a href="#">Sleep</a></li>
-        <li><a href="#">Buy cat food</a></li>
-        <li><a href="#">Build some more useful phone apps</a></li>
-        <li><a href="#">Sleep</a></li>
-        <li><a href="#">Buy cat food</a></li>
-        <li><a href="#">Build some more useful phone apps</a></li>
-        <li><a href="#">Sleep</a></li>
-        <li><a href="#">Buy cat food</a></li>
-        <li><a href="#">Build some more useful phone apps</a></li>
-        <li><a href="#">Sleep</a></li>
-        <li><a href="#">Buy cat food</a></li>
-        <li><a href="#">Build some more useful phone apps</a></li>
-        <li class="last"><a href="#">Sleep</a></li>
+        
       </ul>
     </div>
     
