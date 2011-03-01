@@ -8,11 +8,20 @@ function MeDo() {
 
 MeDo.prototype._init = function() {
   
+  var obj = this;
+  
   // Setup the event handlers
   $('#btn-show-addpage').click(Util.bind(this, this.showAddPage));
   $('#btn-save-todo').click(Util.bind(this, this.saveTodo));
   $('#btn-show-homepage').click(Util.bind(this, this.showHomePage));
   
+  $('#new-todo').bind('keypress', function(e) {
+    if(e.keyCode==13){
+      obj.saveTodo();
+    }
+  });
+
+
   this.render();
   
 }
@@ -29,9 +38,6 @@ MeDo.prototype.add = function(todo) {
   
   // Add to the list
   this.todoList.unshift(todo);
-
-  // Update the screen
-  this.render();
   
 }
 
@@ -106,5 +112,8 @@ MeDo.prototype.showHomePage = function() {
   
   $('#addpage').css('display', 'none');
   $('#homepage').css('display', 'block');
+  
+  // Update the screen
+  this.render();
   
 }
