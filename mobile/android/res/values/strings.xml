@@ -2,4 +2,5 @@
 <resources>
     <string name="hello">Hello World, App!</string>
     <string name="app_name">MeDo</string>
+<string name="minsdk">1</string>
 </resources>

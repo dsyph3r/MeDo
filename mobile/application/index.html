@@ -31,21 +31,48 @@
 <body id="stage" class="theme" onload="init()">
   
   <script type="text/javascript" charset="utf-8">
+  
+  
+    logoSwithDuration = 1000;
+    logoFadeDuration  = 400;
+    slideDuration     = 700;
+    length            = 20;
+    
+    function logoSwitch() {
+      
+      $('.logo .left').animate({top: '+='+length, left: '-='+length }, slideDuration);
+      $('.logo .right').animate({top: '-='+length, left: '+='+length }, slideDuration);
+      
+        
+        $('.logo * ').fadeOut(logoFadeDuration, function() {
+          $('.homepage').fadeIn(logoFadeDuration, function() { 
+            medo = new MeDo();
+            medo.loadRaw(testData);
+          })
+        })
+      
+    }
+    
     document.addEventListener("deviceready", function() {
-      medo = new MeDo();
-      medo.loadRaw(testData);
+      init()
     }, true);
 
 
     function init() {
-      medo = new MeDo();
-      medo.loadRaw(testData);
+      
+      window.setTimeout(logoSwitch, logoSwithDuration);
+
     }
 
   </script>
   
+  <div class="logo">
+    <img class="left" src="images/sickle3.png" alt="Sickle" />
+    <img class="right" src="images/sickle2.png" alt="Sickle" />
+  </div>
   
-  <div class="homepage">
+
+  <div class="homepage" style="display: none">
     <div class="main" id="todo">
       
       <h2>MeDo - 16 items</h2>
@@ -62,14 +89,9 @@
           </a>
         </div>
       </div>
-      <div class="item">
-        <a href="#" class="" onclick="medo.exit();">
-          Exit
-        </a>
-      </div>
     </div>
-  </div> <!-- homepage -->
-
+  </div>  <!-- homepage -->
+  
 </body>
 </html>
 
