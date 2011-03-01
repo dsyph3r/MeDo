@@ -1,18 +1,20 @@
 
 function MeDo() {
-  
-  this.todoListStore = null;
-  
+    
   this.todoList = [];
   this._init();
   
-
 }
 
 MeDo.prototype._init = function() {
   
-  this.todoListStore = new Lawnchair('todo-list');
-
+  // Setup the event handlers
+  $('#btn-show-addpage').click(Util.bind(this, this.showAddPage));
+  $('#btn-save-todo').click(Util.bind(this, this.saveTodo));
+  $('#btn-show-homepage').click(Util.bind(this, this.showHomePage));
+  
+  this.render();
+  
 }
 
 MeDo.prototype.loadRaw = function(raw) {
@@ -25,13 +27,9 @@ MeDo.prototype.loadRaw = function(raw) {
 
 MeDo.prototype.add = function(todo) {
   
-  //this.todoListStore.remove('todo');
-  
   // Add to the list
   this.todoList.unshift(todo);
-  
-  //this.todoListStore.save({key: 'todo', todo: this.todoList});
-  
+
   // Update the screen
   this.render();
   
@@ -52,7 +50,7 @@ MeDo.prototype.render = function() {
   /** Going to lazy render for now, just redraw the whole list **/
   
   // Clean list
-  $('#todo ul').html("");
+  $('#homepage ul.todo').html("");
   
   // Add items
   for (var i = 0; i < this.todoList.length; i++) {
@@ -65,37 +63,48 @@ MeDo.prototype.render = function() {
       htmlClass += " last";
       
     var html = '<li class="' + htmlClass + '"><a onclick="medo.remove(' + i + ')" href="#">' + this.todoList[i] + '</a></li>';
-    $('#todo ul').append(html);
+    $('#homepage ul.todo').append(html);
     
-    i++
   };
   
   $('#count-todos').html(this.todoList.length);
   
 }
 
-MeDo.prototype.addNew = function() {
-
+MeDo.prototype.resetTodoInput = function() {
+  
   $('#new-todo').val("");
+  $('#new-todo').parent().removeClass('field-error');
+  
+}
+
+MeDo.prototype.saveTodo = function() {
+  
+  var newTodo = $('#new-todo').val();
+  
+  // Check for empty todo
+  if (newTodo.length) {
+    this.add(newTodo);
+    this.resetTodoInput();
+    this.showHomePage();
+  }
+  else
+    $('#new-todo').parent().addClass('field-error');
+  
+}
+
+MeDo.prototype.showAddPage = function() {
+
+  this.resetTodoInput();
     
-  $('.homepage').css('display', 'none');  
-  $('.addpage').css('display', 'block');
+  $('#homepage').css('display', 'none');  
+  $('#addpage').css('display', 'block');
   
 }
 
-MeDo.prototype.save = function() {
+MeDo.prototype.showHomePage = function() {
   
-  this.add($('#new-todo').val());
-  $('#new-todo').val("");
-  
-  $('.addpage').css('display', 'none');
-  $('.homepage').css('display', 'block');
-  
-}
-
-MeDo.prototype.cancelAdd = function() {
-  
-  $('.addpage').css('display', 'none');
-  $('.homepage').css('display', 'block');
+  $('#addpage').css('display', 'none');
+  $('#homepage').css('display', 'block');
   
 }

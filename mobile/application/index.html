@@ -8,85 +8,41 @@
   <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="no title" charset="utf-8">
   
   <script type="text/javascript" src="js/jquery.js"></script>    
-  <!--<script type="text/javascript" src="js/phonegap.js"></script>-->
+  <script type="text/javascript" src="js/phonegap.js"></script>
   <script type="text/javascript" src="js/lawnchair/Lawnchair.js"></script>
   <script type="text/javascript" src="js/lawnchair/adaptors/LawnchairAdaptorHelpers.js"></script>
-  <script type="text/javascript" src="js/medo.js"></script>   
+  <script type="text/javascript" src="js/util.js"></script> 
+  <script type="text/javascript" src="js/medo.js"></script>
   
-  <script type="text/javascript" charset="utf-8">
-    var medo = null;
-    
-    var testData = [
-      "Buy cat food",
-      "Build some more useful phone apps",
-      "Sleep",
-      "Buy cat food",
-      "Build some more useful phone apps",
-      "Sleep",
-      "Buy cat food",
-      "Build some more useful phone apps",
-      "Sleep"
-    ];
-  </script>
-
 </head>
 <body id="stage" class="theme" onload="init()">
   
   <script type="text/javascript" charset="utf-8">
   
-  
-    logoSwithDuration = 1000;
-    logoFadeDuration  = 400;
-    slideDuration     = 700;
-    length            = 20;
-    
-    function logoSwitch() {
-      
-      $('.logo .left').animate({top: '+='+length, left: '-='+length }, slideDuration);
-      $('.logo .right').animate({top: '-='+length, left: '+='+length }, slideDuration);
-      
-        
-        $('.logo * ').fadeOut(logoFadeDuration, function() {
-          $('.homepage').fadeIn(logoFadeDuration, function() { 
-            medo = new MeDo();
-            medo.loadRaw(testData);
-          })
-        })
-      
-    }
+    var medo = null;
     
     document.addEventListener("deviceready", function() {
       init()
     }, true);
 
-
     function init() {
-      
-      window.setTimeout(logoSwitch, logoSwithDuration);
-
+      medo = new MeDo();
     }
 
   </script>
-  
-  <div class="logo">
-    <img class="left" src="images/sickle3.png" alt="Sickle" />
-    <img class="right" src="images/sickle2.png" alt="Sickle" />
-  </div>
-  
 
-  <div class="homepage" style="display: none">
-    <div class="main" id="todo">
+  <div id="homepage" class="page">
+    <div class="main">
       
-      <h2>MeDo - <span id="count-todos">-</span> items</h2>
-      <ul>
-        
+      <h2>MeDo - <span id="count-todos">0</span> items</h2>
+      <ul class="todo">
       </ul>
     </div>
     
     <div class="tray-menu">
       <div class="item">
         <div class="inner">
-          <a href="#" class="" onclick="medo.addNew();">
+          <a href="#" id="btn-show-addpage">
             Add
           </a>
         </div>
@@ -94,7 +50,7 @@
     </div>
   </div> <!-- homepage -->
   
-  <div class="addpage" style="display: none">
+  <div id="addpage" class="page">
     <div class="add">
       
       <div class="input-wrapper">
@@ -106,14 +62,14 @@
     <div class="tray-menu">
       <div class="item item-50">
         <div class="inner border-right">
-          <a href="#" class="" onclick="medo.save();">
+          <a href="#" id="btn-save-todo">
             Save
           </a>
         </div>
       </div>
       <div class="item item-50">
         <div class="inner">
-          <a href="#" class="" onclick="medo.cancelAdd();">
+          <a href="#" id="btn-show-homepage">
             Cancel
           </a>
         </div>
@@ -121,7 +77,6 @@
     </div>
   </div> <!-- addpage -->
 
->>>>>>> e2b449e1d5af1dc0180b8caa861e5141cec0acd2
 </body>
 </html>
 
