@@ -8,7 +8,9 @@
   <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="no title" charset="utf-8">
   
   <script type="text/javascript" src="js/jquery.js"></script>    
-  <script type="text/javascript" src="js/phonegap.js"></script>
+  <!--<script type="text/javascript" src="js/phonegap.js"></script>-->
+  <script type="text/javascript" src="js/lawnchair/Lawnchair.js"></script>
+  <script type="text/javascript" src="js/lawnchair/adaptors/LawnchairAdaptorHelpers.js"></script>
   <script type="text/javascript" src="js/medo.js"></script>   
   
   <script type="text/javascript" charset="utf-8">
@@ -75,7 +77,7 @@
   <div class="homepage" style="display: none">
     <div class="main" id="todo">
       
-      <h2>MeDo - 16 items</h2>
+      <h2>MeDo - <span id="count-todos">-</span> items</h2>
       <ul>
         
       </ul>
@@ -90,8 +92,36 @@
         </div>
       </div>
     </div>
-  </div>  <!-- homepage -->
+  </div> <!-- homepage -->
   
+  <div class="addpage" style="display: none">
+    <div class="add">
+      
+      <div class="input-wrapper">
+        <input type="text" placeholder="new todo ..." id="new-todo" />
+      </div>
+      
+    </div>
+    
+    <div class="tray-menu">
+      <div class="item item-50">
+        <div class="inner border-right">
+          <a href="#" class="" onclick="medo.save();">
+            Save
+          </a>
+        </div>
+      </div>
+      <div class="item item-50">
+        <div class="inner">
+          <a href="#" class="" onclick="medo.cancelAdd();">
+            Cancel
+          </a>
+        </div>
+      </div>
+    </div>
+  </div> <!-- addpage -->
+
+>>>>>>> e2b449e1d5af1dc0180b8caa861e5141cec0acd2
 </body>
 </html>
 

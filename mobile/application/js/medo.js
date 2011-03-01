@@ -1,6 +1,8 @@
 
 function MeDo() {
   
+  this.todoListStore = null;
+  
   this.todoList = [];
   this._init();
   
@@ -9,6 +11,8 @@ function MeDo() {
 
 MeDo.prototype._init = function() {
   
+  this.todoListStore = new Lawnchair('todo-list');
+
 }
 
 MeDo.prototype.loadRaw = function(raw) {
@@ -21,8 +25,12 @@ MeDo.prototype.loadRaw = function(raw) {
 
 MeDo.prototype.add = function(todo) {
   
+  //this.todoListStore.remove('todo');
+  
   // Add to the list
-  this.todoList.push(todo);
+  this.todoList.unshift(todo);
+  
+  //this.todoListStore.save({key: 'todo', todo: this.todoList});
   
   // Update the screen
   this.render();
@@ -48,6 +56,7 @@ MeDo.prototype.render = function() {
   
   // Add items
   for (var i = 0; i < this.todoList.length; i++) {
+    
     var htmlClass = "";
     if (0 == i)
       htmlClass += "first";
@@ -56,24 +65,37 @@ MeDo.prototype.render = function() {
       htmlClass += " last";
       
     var html = '<li class="' + htmlClass + '"><a onclick="medo.remove(' + i + ')" href="#">' + this.todoList[i] + '</a></li>';
-    $('#todo ul').append(html)
-  }
+    $('#todo ul').append(html);
+    
+    i++
+  };
   
+  $('#count-todos').html(this.todoList.length);
   
 }
 
 MeDo.prototype.addNew = function() {
+
+  $('#new-todo').val("");
+    
+  $('.homepage').css('display', 'none');  
+  $('.addpage').css('display', 'block');
   
-  var random = [
-    "Buy cat food",
-    "Build some more useful phone apps",
-    "Sleep"
-  ];
-
-  this.add(random[Math.floor(Math.random()* (random.length))])
-
 }
 
-MeDo.prototype.exit = function() {
-  alert("TODO: exit");
+MeDo.prototype.save = function() {
+  
+  this.add($('#new-todo').val());
+  $('#new-todo').val("");
+  
+  $('.addpage').css('display', 'none');
+  $('.homepage').css('display', 'block');
+  
+}
+
+MeDo.prototype.cancelAdd = function() {
+  
+  $('.addpage').css('display', 'none');
+  $('.homepage').css('display', 'block');
+  
 }
